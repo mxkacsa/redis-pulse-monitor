@@ -1,7 +1,8 @@
 # Redis Pulse Monitor
 
-The `redis_pulse_monitor` package provides functionality to monitor and manage Redis-based agents. Each agent sends periodic "pulse" messages to indicate its active state, and the monitor checks the agents' status by receiving these pulses. The monitor can detect lost or found agents and trigger events when these states change.
+This package allows you to check if agents are reachable by sending a heartbeat, and the Monitor service receives events when an agent goes missing, returns, or sends an error or warning message.
 
+The monitor service sends a pulse signal at specified intervals and waits for responses from the agents. If no response is received from an agent, the monitor knows that there is an issue with that agent.
 ## Installation
 To install, simply run:
 
