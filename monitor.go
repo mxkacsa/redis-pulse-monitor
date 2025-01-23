@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"github.com/mxkacsa/eventbus"
 	"github.com/redis/go-redis/v9"
-	"log"
 	"time"
 )
 
@@ -182,7 +181,6 @@ func (m *Monitor) pingAgents() {
 	}
 
 	m.agentsWaitRoom = make(map[string]time.Time)
-	log.Println("Pinging agents")
 	m.client.Publish(m.ctx, m.conf.PulseTopic, msgStr)
 }
 

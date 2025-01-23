@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"github.com/mxkacsa/eventbus"
 	"github.com/redis/go-redis/v9"
-	"log"
 )
 
 type Agent struct {
@@ -86,8 +85,6 @@ func (a *Agent) processMessage(payload string) {
 		return
 	}
 
-	log.Println("Received ping message: ", msg.Message)
-
 	err = a.sendPong(msg.Message)
 	if err != nil {
 		a.ErrorEvent.Publish(Message{
@@ -135,6 +132,5 @@ func (a *Agent) sendMessage(message string, msgType PulseMessageType) error {
 		Message: message,
 	}
 	msgStr, _ := json.Marshal(msg)
-	log.Println("Sending message: ", string(msgStr))
 	return a.client.Publish(a.ctx, a.pulseTopic, msgStr).Err()
 }
